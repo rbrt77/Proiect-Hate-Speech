@@ -1,28 +1,146 @@
 <!DOCTYPE html>
-<html>
+<html lang="ro">
 <head>
-    <title>Detector Hate Speech</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detector Hate Speech AI</title>
     <style>
-        body { font-family: sans-serif; text-align: center; margin-top: 50px; background-color: #f4f4f9; }
-        form { margin: 20px auto; width: 50%; }
-        textarea { width: 100%; height: 100px; padding: 10px; border-radius: 5px; }
-        button { padding: 10px 20px; background-color: #007bff; color: white; border: none; cursor: pointer; border-radius: 5px; font-size: 16px; margin-top: 10px;}
-        button:hover { background-color: #0056b3; }
-        h2 { color: #333; }
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        h1 {
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        p.description {
+            color: #718096;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        form {
+            width: 100%;
+        }
+        
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 16px;
+            resize: vertical
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background-color: #f8fafc;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #764ba2;
+            background-color: #fff;
+            box-shadow: 0 0 0 3px rgba(118, 75, 162, 0.2);
+        }
+        
+        button {
+            margin-top: 25px;
+            padding: 15px 40px;
+            background: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px -10px rgba(37, 117, 252, 0.5);
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px -10px rgba(37, 117, 252, 0.7);
+            background: linear-gradient(to right, #2575fc 0%, #6a11cb 100%);
+        }
+        
+        button:active {
+            transform: translateY(-1px);
+        }
+
+        .result-box {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 12px;
+            background-color: #f7fafc;
+            border: 1px solid #edf2f7;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .result-box h2 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .footer-note {
+            margin-top: 40px;
+            font-size: 0.8rem;
+            color: #a0aec0;
+        }
     </style>
 </head>
 <body>
-    <h1>Detector de Comentarii Toxice (ML)</h1>
-    <p>Introduceți un comentariu în engleză pentru a verifica dacă este toxic.</p>
+    <div class="container">
+        <h1>👾 Detector de Comentarii Toxice (ML)</h1>
+        <p class="description">Folosim Inteligența Artificială pentru a analiza sentimentul textului. Introduceți un comentariu în engleză.</p>
 
-    <form action="/predict" method="post">
-        <textarea name="mesaj" placeholder="Scrie ceva aici... (ex: You are stupid)" required>{{ input_text }}</textarea>
-        <br>
-        <button type="submit">Verifică</button>
-    </form>
+        <form action="/predict" method="post">
+            <textarea name="mesaj" placeholder="Scrie comentariul aici... (ex: This is amazing / You are awful)" required minlength="2">{{ input_text }}</textarea>
+            <br>
+            <button type="submit">Analizează Textul</button>
+        </form>
 
-    {% if prediction_text %}
-        <h2 style="color: {{ color }};">Rezultat: {{ prediction_text }}</h2>
-    {% endif %}
+        {% if prediction_text %}
+            <div class="result-box">
+                <h2 style="color: {{ color }};">
+                    {% if color == 'red' %}⚠️{% else %}✅{% endif %} 
+                    Rezultat: {{ prediction_text }}
+                </h2>
+            </div>
+        {% endif %}
+
+        <div class="footer-note">
+            Proiect Machine Learning - NLP
+        </div>
+    </div>
 </body>
 </html>
