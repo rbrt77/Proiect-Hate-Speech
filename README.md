@@ -1,57 +1,62 @@
-# 🛡️ Hate Speech Detection System
+# 🧠 Detectarea Hate Speech-ului --- Proiect Machine Learning
 
-An ML-powered web application designed to detect and classify toxic comments and hate speech in real-time. This project was developed as part of a Machine Learning university course.
+Acest proiect reprezintă o aplicație web simplă care utilizează tehnici
+de **Inteligență Artificială** pentru a detecta mesaje toxice sau „hate
+speech". Modelul este antrenat pe date text și integrat într-o interfață
+web realizată cu **Flask**.
 
-## 🚀 Project Overview
-The goal of this project is to create a safer online environment by automatically identifying toxic language.
-The system uses **Natural Language Processing (NLP)** techniques to process text and a **Machine Learning model** (Logistic Regression / Random Forest) to classify it.
+------------------------------------------------------------------------
 
-### Key Features:
-* **Text Preprocessing:** Cleaning, tokenization, and stop-word removal.
-* **TF-IDF Vectorization:** Converting text into numerical features.
-* **Web Interface:** A user-friendly Flask web app for testing the model.
-* **Real-time Prediction:** Instant classification of input text.
+## 👥 Echipa
 
-## 🛠️ Tech Stack
-* **Language:** Python 3.12
-* **Libraries:** `scikit-learn`, `pandas`, `flask`, `joblib`, `nltk`
-* **Dataset:** Jigsaw Toxic Comment Classification Challenge
+1.  **\[Tudorache Robert\]** --- Procesare date\
+2.  **\[Craciun Alexandru\]** --- Antrenare model\
+3.  **\[David Denis\]** --- Evaluare și testare\
+4.  **\[Onete Andrei\]** --- Interfață Web
 
-## 📂 Project Structure
-```text
-├── antrenare.py          # Script for training the ML model
-├── aplicatia.py          # Flask web application
-├── model_hate_speech.pkl # Saved trained model
-├── vectorizer.pkl        # Saved TF-IDF vectorizer
-├── requirements.txt      # List of dependencies
-└── README.md             # Project documentation
-⚙️ Installation & Setup
-Follow these steps to run the project locally:
+------------------------------------------------------------------------
 
-1. Clone or Download the repository
-Navigate to the project folder in your terminal.
+## 📂 Structura proiectului
 
-2. Set up the Virtual Environment (Recommended)
-# Create virtual environment
+  -----------------------------------------------------------------------
+  Fișier                        Descriere
+  ----------------------------- -----------------------------------------
+  `antrenare.py`                Scriptul pentru citirea datelor și
+                                antrenarea modelului.
+
+  `aplicatia.py`                Codul aplicației web Flask.
+
+  `model_hate_speech.pkl`       Modelul AI salvat (creierul aplicației).
+
+  `requirements.txt`            Lista de librării necesare proiectului.
+  -----------------------------------------------------------------------
+
+------------------------------------------------------------------------
+
+## 🚀 Cum se rulează proiectul
+
+### 1. Crearea și activarea mediului virtual
+
+``` bash
 python3 -m venv venv
-
-# Activate it (Linux/Mac)
 source venv/bin/activate
+```
 
-# Activate it (Windows)
-venv\Scripts\activate
-3. Install Dependencies
-Bash
+### 2. Instalarea librăriilor necesare
 
-pip install -r requirements.txt
-4. Train the Model (First run only)
-If the .pkl files are missing, train the model first:
+``` bash
+pip install pandas scikit-learn flask joblib
+```
 
-Bash
-
+### 3. Antrenarea modelului
+``` bash
 python antrenare.py
-5. Run the Application
-Bash
+```
 
+### 4. Pornirea aplicației web
+
+``` bash
 python aplicatia.py
-Open your browser and go to: http://127.0.0.1:5000
+```
+
+Apoi deschide browserul la: http://127.0.0.1:5000
